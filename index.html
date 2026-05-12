@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>KubGuide — Lös din Rubik's Cube</title>
+<link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-mini"><span></span><span></span><span></span><span></span></div>
+    KubGuide
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Hem</a></li>
+    <li><a href="pages/3x3.html">3×3 Kub</a></li>
+    <li><a href="pages/2x2.html">2×2 Kub</a></li>
+    <li><a href="pages/notation.html">Notation</a></li>
+  </ul>
+  <button class="nav-toggle">☰</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <h1>Lär dig lösa<br/>Rubik's Cube!</h1>
+        <p>Steg-för-steg guider för att lösa <strong>3×3</strong> och <strong>2×2</strong> Rubik's Cube — från nybörjare till avancerade metoder med OLL och PBL. Interaktiva 3D-modeller och tydliga algoritmer.</p>
+        <div class="hero-btns">
+          <a href="pages/3x3.html" class="btn btn-white">▶ Börja med 3×3</a>
+          <a href="pages/2x2.html" class="btn btn-outline">2×2 Pocket Cube</a>
+        </div>
+      </div>
+      <div class="hero-cubes">
+        <a href="pages/3x3.html" class="cube-card">
+          <canvas id="hero3x3" width="180" height="180"></canvas>
+          <div class="cube-card-label">3×3 Rubik's Cube</div>
+          <div class="drag-hint">↔ Dra för att rotera</div>
+        </a>
+        <a href="pages/2x2.html" class="cube-card">
+          <canvas id="hero2x2" width="160" height="160"></canvas>
+          <div class="cube-card-label">2×2 Pocket Cube</div>
+          <div class="drag-hint">↔ Dra för att rotera</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHOD CARDS -->
+<section class="methods">
+  <h2>Välj en guide</h2>
+  <div class="method-grid">
+
+    <a href="pages/3x3.html" class="method-card">
+      <div class="mc-top">
+        <div class="mc-badge">3×3 · Nybörjare</div>
+        <h3>Nybörjarguiden<br/>Lager-för-lager</h3>
+      </div>
+      <div class="mc-body">
+        <p>Lär dig lösa kuben med den klassiska lager-för-lager-metoden. 7 tydliga steg, enkla algoritmer och förklaringar som passar nybörjare.</p>
+        <div class="mc-tags">
+          <span class="mc-tag">7 steg</span>
+          <span class="mc-tag">Nybörjare</span>
+          <span class="mc-tag">ca 1 timme</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="pages/3x3.html#cfop" class="method-card">
+      <div class="mc-top orange">
+        <div class="mc-badge">3×3 · Avancerat</div>
+        <h3>CFOP / Fridrich<br/>Speedcubing</h3>
+      </div>
+      <div class="mc-body">
+        <p>Lär dig F2L, OLL och PLL — världens vanligaste speedcubing-metod. Reducera ditt dragantal och sikta på sub-30.</p>
+        <div class="mc-tags">
+          <span class="mc-tag">F2L</span>
+          <span class="mc-tag">OLL (57 fall)</span>
+          <span class="mc-tag">PLL (21 fall)</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="pages/2x2.html" class="method-card">
+      <div class="mc-top green">
+        <div class="mc-badge">2×2 · Nybörjare</div>
+        <h3>Pocket Cube<br/>Nybörjarmetoden</h3>
+      </div>
+      <div class="mc-body">
+        <p>2×2-kuben har bara 8 hörnpjäser — inga kanter. Lös den på 4 enkla steg med Sune-algoritmen.</p>
+        <div class="mc-tags">
+          <span class="mc-tag">4 steg</span>
+          <span class="mc-tag">Nybörjare</span>
+          <span class="mc-tag">ca 30 min</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="pages/2x2.html#oll" class="method-card">
+      <div class="mc-top teal">
+        <div class="mc-badge">2×2 · Avancerat</div>
+        <h3>OLL + PBL<br/>Avancerad 2×2</h3>
+      </div>
+      <div class="mc-body">
+        <p>Orientera alla hörn med 7 OLL-fall, permuterar sedan båda lagren med 5 PBL-fall. Effektivt och snabbt.</p>
+        <div class="mc-tags">
+          <span class="mc-tag">7 OLL-fall</span>
+          <span class="mc-tag">5 PBL-fall</span>
+          <span class="mc-tag">Speedcubing</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- NOTATION QUICK REF -->
+<section style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:2.5rem 1.5rem">
+  <div style="max-width:1000px;margin:0 auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem">
+      <h2 style="font-family:'Nunito';font-weight:900;font-size:1.5rem">Notationsöversikt</h2>
+      <a href="pages/notation.html" class="btn btn-blue" style="font-size:.82rem;padding:.5rem 1.2rem">Se full notation →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden">
+      <div style="background:var(--white);padding:1rem .8rem;text-align:center">
+        <div style="font-family:'Nunito';font-weight:900;font-size:1.6rem;color:var(--blue)">R</div>
+        <div style="font-size:.78rem;color:var(--muted);margin-top:.2rem">Höger medsols</div>
+      </div>
+      <div style="background:var(--white);padding:1rem .8rem;text-align:center">
+        <div style="font-family:'Nunito';font-weight:900;font-size:1.6rem;color:var(--red)">R'</div>
+        <div style="font-size:.78rem;color:var(--muted);margin-top:.2rem">Höger motsols</div>
+      </div>
+      <div style="background:var(--white);padding:1rem .8rem;text-align:center">
+        <div style="font-family:'Nunito';font-weight:900;font-size:1.6rem;color:var(--blue)">U</div>
+        <div style="font-size:.78rem;color:var(--muted);margin-top:.2rem">Övre medsols</div>
+      </div>
+      <div style="background:var(--white);padding:1rem .8rem;text-align:center">
+        <div style="font-family:'Nunito';font-weight:900;font-size:1.6rem;color:var(--blue)">F</div>
+        <div style="font-size:.78rem;color:var(--muted);margin-top:.2rem">Fram medsols</div>
+      </div>
+      <div style="background:var(--white);padding:1rem .8rem;text-align:center">
+        <div style="font-family:'Nunito';font-weight:900;font-size:1.6rem;color:var(--blue)">L</div>
+        <div style="font-size:.78rem;color:var(--muted);margin-top:.2rem">Vänster medsols</div>
+      </div>
+      <div style="background:var(--white);padding:1rem .8rem;text-align:center">
+        <div style="font-family:'Nunito';font-weight:900;font-size:1.6rem;color:var(--blue)">D</div>
+        <div style="font-size:.78rem;color:var(--muted);margin-top:.2rem">Nedre medsols</div>
+      </div>
+      <div style="background:var(--white);padding:1rem .8rem;text-align:center">
+        <div style="font-family:'Nunito';font-weight:900;font-size:1.6rem;color:var(--blue-dk)">R2</div>
+        <div style="font-size:.78rem;color:var(--muted);margin-top:.2rem">180° rotation</div>
+      </div>
+      <div style="background:var(--white);padding:1rem .8rem;text-align:center">
+        <div style="font-family:'Nunito';font-weight:900;font-size:1.6rem;color:var(--muted)">M</div>
+        <div style="font-size:.78rem;color:var(--muted);margin-top:.2rem">Mittenskivan</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>KubGuide — Lär dig lösa Rubik's Cube</p>
+  <p style="margin-top:.5rem">
+    <a href="index.html">Hem</a>
+    <a href="pages/3x3.html">3×3</a>
+    <a href="pages/2x2.html">2×2</a>
+    <a href="pages/notation.html">Notation</a>
+  </p>
+</footer>
+
+<script src="js/cube3d.js"></script>
+<script src="js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const c1=document.getElementById('hero3x3');
+  if(c1){const k=new RubiksCube3D(c1,{size:3,cell:34,rotX:-0.44,rotY:.72});k.spin(.006);}
+  const c2=document.getElementById('hero2x2');
+  if(c2){const k=new RubiksCube3D(c2,{size:2,cell:46,rotX:-0.44,rotY:.72});k.spin(.007);}
+});
+</script>
+</body>
+</html>

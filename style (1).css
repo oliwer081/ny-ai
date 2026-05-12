@@ -1,0 +1,418 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Open+Sans:wght@400;600&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+:root{
+  --blue:      #3d91b0;
+  --blue-dk:   #2a6f8a;
+  --blue-lt:   #e8f5fa;
+  --blue-mid:  #bcdff0;
+  --orange:    #e8832a;
+  --green:     #4caf50;
+  --red:       #e53935;
+  --yellow:    #f9c920;
+  --text:      #333;
+  --muted:     #666;
+  --border:    #dce6ea;
+  --bg:        #f2f6f8;
+  --white:     #fff;
+  --radius:    6px;
+  --shadow:    0 1px 8px rgba(0,0,0,.09);
+  --shadow-md: 0 4px 20px rgba(0,0,0,.12);
+  --nav-h:     56px;
+  /* cube colours */
+  --cW:#f5f5ee; --cY:#f9c920; --cR:#e53935;
+  --cO:#f07820; --cB:#1e6fad; --cG:#43a047;
+}
+
+body{font-family:'Open Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+::selection{background:var(--blue);color:#fff}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:var(--blue-mid);border-radius:99px}
+
+/* ── NAV ───────────────────────────────── */
+.nav{
+  position:sticky;top:0;z-index:200;
+  height:var(--nav-h);
+  background:var(--blue);
+  display:flex;align-items:center;
+  padding:0 1.8rem;gap:1rem;
+  box-shadow:0 2px 6px rgba(0,0,0,.2);
+}
+.nav-logo{
+  font-family:'Nunito',sans-serif;font-weight:900;font-size:1.35rem;
+  color:#fff;text-decoration:none;
+  display:flex;align-items:center;gap:.5rem;
+}
+.logo-mini{display:grid;grid-template-columns:1fr 1fr;gap:2px;width:20px;height:20px}
+.logo-mini span{border-radius:2px}
+.logo-mini span:nth-child(1){background:var(--cR)}
+.logo-mini span:nth-child(2){background:var(--cB)}
+.logo-mini span:nth-child(3){background:var(--cG)}
+.logo-mini span:nth-child(4){background:var(--cY)}
+
+.nav-links{display:flex;gap:.2rem;list-style:none;margin-left:auto}
+.nav-links a{
+  font-family:'Nunito';font-weight:700;font-size:.84rem;
+  color:rgba(255,255,255,.85);text-decoration:none;
+  padding:.38rem .9rem;border-radius:4px;
+  transition:background .15s,color .15s;
+}
+.nav-links a:hover,.nav-links a.active{background:rgba(255,255,255,.18);color:#fff}
+.nav-toggle{display:none;background:none;border:1px solid rgba(255,255,255,.4);border-radius:4px;color:#fff;font-size:1.1rem;cursor:pointer;padding:.28rem .6rem;margin-left:auto}
+
+/* ── HERO ───────────────────────────────── */
+.hero{
+  background:linear-gradient(135deg,#256780 0%,var(--blue) 55%,#5cb5d0 100%);
+  color:#fff;padding:4rem 1.5rem 5rem;
+  position:relative;overflow:hidden;
+}
+.hero::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M0 0h20v20H0zm20 20h20v20H20z'/%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-inner{max-width:1000px;margin:0 auto;position:relative;z-index:1}
+
+.hero-grid{display:grid;grid-template-columns:1fr auto;align-items:center;gap:3rem}
+.hero-text h1{
+  font-family:'Nunito';font-weight:900;font-size:clamp(2rem,4.5vw,3.2rem);
+  line-height:1.1;margin-bottom:1rem;
+}
+.hero-text p{font-size:1.05rem;opacity:.9;line-height:1.7;max-width:500px;margin-bottom:2rem}
+.hero-btns{display:flex;gap:.85rem;flex-wrap:wrap}
+
+.hero-cubes{display:flex;flex-direction:column;gap:1.2rem;align-items:center}
+.cube-card{
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:12px;padding:1.2rem 1.5rem;
+  display:flex;flex-direction:column;align-items:center;gap:.6rem;
+  cursor:pointer;text-decoration:none;
+  transition:background .2s,transform .2s;
+}
+.cube-card:hover{background:rgba(255,255,255,.2);transform:translateY(-3px)}
+.cube-card canvas{display:block;cursor:grab}
+.cube-card canvas:active{cursor:grabbing}
+.cube-card-label{font-family:'Nunito';font-weight:800;font-size:.95rem;color:#fff}
+.cube-card-sub{font-size:.74rem;color:rgba(255,255,255,.65)}
+.drag-hint{font-size:.7rem;color:rgba(255,255,255,.5);font-style:italic}
+
+/* ── BUTTONS ────────────────────────────── */
+.btn{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-family:'Nunito';font-weight:800;font-size:.9rem;
+  padding:.68rem 1.6rem;border-radius:50px;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:all .18s;white-space:nowrap;
+}
+.btn-white{background:#fff;color:var(--blue-dk)}
+.btn-white:hover{background:#e8f5fa;box-shadow:0 4px 16px rgba(0,0,0,.15);transform:translateY(-1px)}
+.btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.65)}
+.btn-outline:hover{background:rgba(255,255,255,.15)}
+.btn-blue{background:var(--blue);color:#fff}
+.btn-blue:hover{background:var(--blue-dk);transform:translateY(-1px);box-shadow:var(--shadow)}
+
+/* ── HOME METHOD CARDS ──────────────────── */
+.methods{padding:3.5rem 1.5rem;max-width:1000px;margin:0 auto}
+.methods h2{
+  font-family:'Nunito';font-weight:900;font-size:1.8rem;
+  text-align:center;margin-bottom:2rem;color:var(--text);
+}
+.method-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
+.method-card{
+  background:var(--white);border-radius:10px;box-shadow:var(--shadow);
+  overflow:hidden;text-decoration:none;color:var(--text);
+  transition:transform .18s,box-shadow .18s;display:flex;flex-direction:column;
+}
+.method-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.mc-top{
+  background:var(--blue);padding:1.8rem 1.6rem 1.4rem;
+  display:flex;flex-direction:column;gap:.8rem;
+}
+.mc-top.orange{background:linear-gradient(135deg,#c05800,var(--orange))}
+.mc-top.green{background:linear-gradient(135deg,#2e7d32,var(--green))}
+.mc-top.teal{background:linear-gradient(135deg,#00695c,#26a69a)}
+.mc-badge{
+  font-family:'Nunito';font-weight:800;font-size:.7rem;
+  text-transform:uppercase;letter-spacing:.1em;
+  background:rgba(255,255,255,.22);color:#fff;
+  padding:.2rem .65rem;border-radius:50px;width:fit-content;
+}
+.mc-top h3{font-family:'Nunito';font-weight:900;font-size:1.4rem;color:#fff;line-height:1.15}
+.mc-body{padding:1.3rem 1.6rem 1.8rem;flex:1;display:flex;flex-direction:column;gap:.9rem}
+.mc-body p{font-size:.88rem;color:var(--muted);line-height:1.65}
+.mc-tags{display:flex;gap:.5rem;flex-wrap:wrap}
+.mc-tag{
+  font-size:.75rem;font-weight:700;color:var(--blue);
+  background:var(--blue-lt);padding:.2rem .6rem;border-radius:50px;
+}
+
+/* ── PAGE HEADER ────────────────────────── */
+.page-hdr{
+  background:var(--white);border-bottom:1px solid var(--border);
+  padding:1.4rem 0;
+}
+.page-hdr-inner{
+  max-width:1100px;margin:0 auto;padding:0 1.5rem;
+  display:grid;grid-template-columns:1fr auto;align-items:center;gap:1.5rem;
+}
+.breadcrumb{font-size:.8rem;color:var(--muted);margin-bottom:.3rem}
+.breadcrumb a{color:var(--blue);text-decoration:none}
+.breadcrumb a:hover{text-decoration:underline}
+.page-hdr-text h1{font-family:'Nunito';font-weight:900;font-size:1.7rem;color:var(--text)}
+.page-hdr-text p{font-size:.88rem;color:var(--muted);margin-top:.2rem}
+
+/* ── PAGE LAYOUT ────────────────────────── */
+.page-wrap{
+  display:grid;grid-template-columns:240px 1fr;
+  max-width:1100px;margin:2rem auto;
+  padding:0 1.5rem;gap:1.8rem;align-items:start;
+}
+
+/* ── SIDEBAR ────────────────────────────── */
+.sidebar{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;position:sticky;top:calc(var(--nav-h)+1rem)}
+.sidebar-hdr{
+  background:var(--blue);color:#fff;padding:.8rem 1.1rem;
+  font-family:'Nunito';font-weight:800;font-size:.88rem;
+  letter-spacing:.03em;
+}
+.sidebar-switch{display:flex;border-bottom:2px solid var(--border)}
+.sidebar-switch a{
+  flex:1;text-align:center;
+  font-family:'Nunito';font-weight:800;font-size:.8rem;
+  padding:.55rem;color:var(--muted);text-decoration:none;
+  border-bottom:3px solid transparent;margin-bottom:-2px;
+  transition:color .15s,border-color .15s;
+}
+.sidebar-switch a:hover{color:var(--blue)}
+.sidebar-switch a.active{color:var(--blue);border-bottom-color:var(--blue)}
+
+.sidebar-nav{list-style:none}
+.sidebar-nav a{
+  display:flex;align-items:center;gap:.7rem;
+  padding:.65rem 1rem;font-size:.83rem;font-weight:600;
+  color:var(--muted);text-decoration:none;
+  border-left:3px solid transparent;border-bottom:1px solid var(--border);
+  transition:all .15s;
+}
+.sidebar-nav li:last-child a{border-bottom:none}
+.sidebar-nav a:hover{background:var(--blue-lt);color:var(--blue-dk)}
+.sidebar-nav a.active{background:var(--blue-lt);color:var(--blue-dk);border-left-color:var(--blue)}
+.s-num{
+  min-width:28px;height:28px;border-radius:5px;
+  background:var(--blue-lt);border:1px solid var(--blue-mid);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Nunito';font-weight:900;font-size:.75rem;color:var(--blue-dk);flex-shrink:0;
+}
+.sidebar-nav a.active .s-num,.sidebar-nav a:hover .s-num{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+/* ── GUIDE PANEL ────────────────────────── */
+.guide{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+
+.g-section{
+  padding:2.4rem 2.6rem;
+  border-bottom:3px solid var(--bg);
+  scroll-margin-top:calc(var(--nav-h)+1.5rem);
+}
+.g-section:last-child{border-bottom:none}
+
+.g-step-label{
+  display:inline-flex;align-items:center;gap:.45rem;
+  font-family:'Nunito';font-weight:800;font-size:.72rem;
+  text-transform:uppercase;letter-spacing:.12em;
+  color:var(--blue);margin-bottom:.55rem;
+}
+.g-step-label span{display:inline-block;width:22px;height:2px;background:var(--blue)}
+
+.g-section h2{
+  font-family:'Nunito';font-weight:900;
+  font-size:clamp(1.35rem,2.5vw,1.85rem);
+  color:var(--text);line-height:1.2;margin-bottom:.9rem;
+}
+.g-section p{color:var(--muted);font-size:.93rem;line-height:1.75;margin-bottom:.9rem}
+.g-section p:last-child{margin-bottom:0}
+.g-section p strong{color:var(--text)}
+.g-section h3{font-family:'Nunito';font-weight:800;font-size:1.05rem;color:var(--text);margin:1.4rem 0 .6rem}
+
+/* ── ALGORITHM BOX ──────────────────────── */
+.algo-box{
+  background:var(--blue-lt);border:1px solid var(--blue-mid);
+  border-left:4px solid var(--blue);
+  border-radius:var(--radius);padding:1rem 1.3rem;margin:.9rem 0;
+  transition:background .15s;
+}
+.algo-box:hover{background:#d8eef7}
+.algo-lbl{
+  font-family:'Nunito';font-weight:700;font-size:.68rem;
+  text-transform:uppercase;letter-spacing:.12em;
+  color:var(--blue-dk);margin-bottom:.5rem;
+}
+.algo-moves{display:flex;flex-wrap:wrap;gap:.28rem;align-items:center}
+.move{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:2rem;height:2rem;padding:0 .28rem;
+  background:#fff;border:1.5px solid var(--blue-mid);border-radius:4px;
+  font-family:'Nunito';font-weight:800;font-size:.88rem;color:var(--text);
+  box-shadow:0 1px 3px rgba(0,0,0,.06);transition:all .12s;cursor:default;
+}
+.move:hover{background:var(--blue);color:#fff;border-color:var(--blue);transform:translateY(-2px);box-shadow:0 3px 8px rgba(61,145,176,.3)}
+.move.prime{color:var(--red)}
+.move.double{color:var(--blue-dk)}
+.move.rotation{color:var(--muted);font-style:italic}
+
+/* ── FACE DIAGRAMS ──────────────────────── */
+.face-diagram{
+  display:inline-grid;gap:3px;padding:4px;
+  background:#999;border:2px solid #888;border-radius:5px;
+}
+.face-3x3{grid-template-columns:repeat(3,1.65rem)}
+.face-2x2{grid-template-columns:repeat(2,2.1rem)}
+.fc{border-radius:3px;aspect-ratio:1}
+.fc-W{background:var(--cW)}.fc-Y{background:var(--cY)}
+.fc-R{background:var(--cR)}.fc-O{background:var(--cO)}
+.fc-B{background:var(--cB)}.fc-G{background:var(--cG)}
+.fc-X{background:#bbb}
+
+.diagram-row{display:flex;gap:1.4rem;flex-wrap:wrap;align-items:flex-end;margin:.9rem 0}
+.diagram-item{display:flex;flex-direction:column;align-items:center;gap:.35rem}
+.diagram-lbl{font-size:.73rem;color:var(--muted);font-weight:600;text-align:center;max-width:90px;line-height:1.3}
+
+/* ── NOTE / TIP BOX ─────────────────────── */
+.note{
+  display:flex;gap:.8rem;
+  border-radius:var(--radius);padding:.9rem 1.1rem;margin:.9rem 0;
+  font-size:.88rem;line-height:1.65;
+}
+.note.info{background:#e3f2fd;border:1px solid #90caf9;color:#0d47a1}
+.note.tip{background:#e8f5e9;border:1px solid #a5d6a7;color:#1b5e20}
+.note.warn{background:#fff8e1;border:1px solid #ffe082;color:#5a4000}
+.note.danger{background:#fce4ec;border:1px solid #f48fb1;color:#7f0000}
+.note-icon{font-size:1.1rem;flex-shrink:0;margin-top:.1rem}
+
+/* ── STEP CARD ──────────────────────────── */
+.step-card{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:var(--radius);padding:1.2rem 1.4rem;margin:.8rem 0;
+}
+.step-card-title{
+  font-family:'Nunito';font-weight:800;font-size:.9rem;
+  color:var(--blue-dk);margin-bottom:.5rem;
+  display:flex;align-items:center;gap:.4rem;
+}
+
+/* ── OLL/PBL CASE GRID ──────────────────── */
+.case-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));
+  gap:.9rem;margin:1rem 0;
+}
+.case-card{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:var(--radius);padding:1rem;
+  display:flex;flex-direction:column;gap:.55rem;
+  transition:box-shadow .15s,transform .15s;
+}
+.case-card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.case-name{font-family:'Nunito';font-weight:800;font-size:.78rem;color:var(--blue-dk)}
+.case-desc{font-size:.74rem;color:var(--muted);line-height:1.45}
+.case-algo{
+  font-family:'Open Sans';font-size:.76rem;color:var(--text);
+  background:#fff;padding:.4rem .6rem;border-radius:4px;
+  border:1px solid var(--border);word-break:break-all;line-height:1.55;
+}
+
+/* ── TABS ───────────────────────────────── */
+.tabs-row{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:1.2rem}
+.tab-btn{
+  font-family:'Nunito';font-weight:700;font-size:.83rem;
+  padding:.55rem 1.1rem;background:none;border:none;
+  color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;
+  transition:all .15s;
+}
+.tab-btn:hover{color:var(--blue)}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* ── PROGRESS TRACKER ───────────────────── */
+.progress{
+  display:flex;margin:1.2rem 0 1.8rem;
+  border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;
+}
+.progress a{
+  flex:1;padding:.55rem .3rem;text-align:center;
+  background:#fff;border-right:1px solid var(--border);
+  text-decoration:none;color:var(--muted);
+  font-family:'Nunito';font-size:.68rem;font-weight:700;line-height:1.35;
+  transition:background .15s;display:flex;flex-direction:column;align-items:center;gap:.15rem;
+}
+.progress a:last-child{border-right:none}
+.progress a:hover{background:var(--blue-lt);color:var(--blue-dk)}
+.progress a.active{background:var(--blue);color:#fff}
+.p-n{font-size:.6rem;opacity:.75}
+
+/* ── NOTATION TABLE ─────────────────────── */
+.ntbl{width:100%;border-collapse:collapse;margin:.9rem 0;font-size:.88rem}
+.ntbl th{
+  background:var(--blue);color:#fff;font-family:'Nunito';font-weight:700;
+  padding:.65rem 1rem;text-align:left;
+}
+.ntbl td{padding:.65rem 1rem;border-bottom:1px solid var(--border)}
+.ntbl tr:last-child td{border-bottom:none}
+.ntbl tr:hover td{background:var(--blue-lt)}
+.xl{font-family:'Nunito';font-weight:900;font-size:1.4rem;color:var(--blue-dk)}
+
+/* ── CANVAS EMBED ───────────────────────── */
+.canvas-wrap{
+  background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);
+  padding:1.5rem;display:flex;flex-direction:column;align-items:center;gap:.6rem;
+  margin:1.2rem 0;
+}
+.canvas-wrap canvas{display:block;cursor:grab}
+.canvas-wrap canvas:active{cursor:grabbing}
+.canvas-caption{font-size:.73rem;color:var(--muted);font-style:italic}
+
+/* ── COLOUR REF ─────────────────────────── */
+.clr-row{display:flex;flex-wrap:wrap;gap:.6rem;margin:.8rem 0}
+.clr-chip{
+  display:flex;align-items:center;gap:.45rem;
+  padding:.38rem .85rem;background:#fff;
+  border:1px solid var(--border);border-radius:50px;font-size:.83rem;font-weight:600;
+}
+.clr-dot{width:.9rem;height:.9rem;border-radius:50%;border:1px solid rgba(0,0,0,.12)}
+
+/* ── FOOTER ─────────────────────────────── */
+.footer{
+  background:var(--blue-dk);color:rgba(255,255,255,.75);
+  padding:1.8rem;text-align:center;margin-top:3rem;font-size:.84rem;
+}
+.footer a{color:rgba(255,255,255,.7);text-decoration:none;margin:0 .6rem}
+.footer a:hover{color:#fff;text-decoration:underline}
+
+/* ── 2×2 OLL DIAGRAMS ───────────────────── */
+.oll2{display:inline-grid;grid-template-columns:repeat(2,2rem);gap:3px;padding:4px;background:#999;border:2px solid #888;border-radius:5px}
+.oll2 .fc{width:2rem;height:2rem;border-radius:3px}
+
+/* ── RESPONSIVE ─────────────────────────── */
+@media(max-width:860px){
+  .page-wrap{grid-template-columns:1fr}
+  .sidebar{position:static}
+  .hero-grid{grid-template-columns:1fr}
+  .hero-cubes{flex-direction:row;justify-content:center}
+}
+@media(max-width:580px){
+  .nav-links{display:none}
+  .nav-links.open{
+    display:flex;flex-direction:column;
+    position:fixed;top:0;left:0;right:0;
+    background:var(--blue);
+    padding:calc(var(--nav-h)+.8rem) 1.2rem 1.5rem;
+    z-index:199;
+  }
+  .nav-toggle{display:block}
+  .g-section{padding:1.6rem 1.2rem}
+  .case-grid{grid-template-columns:1fr 1fr}
+  .page-hdr-inner{grid-template-columns:1fr}
+  .hero{padding:2.5rem 1.2rem 3.5rem}
+  .progress{display:none}
+}
